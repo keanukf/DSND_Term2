@@ -19,6 +19,7 @@ plotly==2.6.0
 python-dateutil==2.7.3
 pytz==2018.4
 requests==2.18.4
+setuptools=45.3.0
 six==1.11.0
 traitlets==4.3.2
 urllib3==1.22
