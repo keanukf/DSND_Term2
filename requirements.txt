@@ -10,7 +10,7 @@ itsdangerous==0.24
 Jinja2==2.10
 jsonschema==2.6.0
 jupyter-core==4.4.0
-MarkupSafe==1.0
+MarkupSafe==1.1.1
 nbformat==4.4.0
 numpy==1.14.3
 pandas==0.22.0
@@ -19,7 +19,6 @@ plotly==2.6.0
 python-dateutil==2.7.3
 pytz==2018.4
 requests==2.18.4
-setuptools=45.3.0
 six==1.11.0
 traitlets==4.3.2
 urllib3==1.22
