@@ -1,5 +1,29 @@
-# Data Scientist Nanodegree (Term 2)
+# Link to Webapp [https://world-bank-dashboard-api.herokuapp.com](https://world-bank-dashboard-api.herokuapp.com)
 
- Content for Udacity's Data Science Nanodegree curriculum, which includes project and lesson content.
+# World Bank API Data Dashboard 
 
- <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. Please refer to [Udacity Terms of Service](https://www.udacity.com/legal) for further information.
+This is a flask app that visualizes data from the world bank API. Data is
+pulled directly from the API and then visualized using Plotly.
+
+This is a project in development for the Udacity Data Scientist Nanodegree. 
+
+## Getting Started 
+
+This flask app can be used as a template for visualizing your own data. Use
+the template to enhance your professional portfolio. 
+
+## Prerequisites
+
+To install the flask app, you need:
+- python3
+- python packages in the requirements.txt file
+ 
+ Install the packages with
+``` 
+ pip install -r requirements.txt
+```
+
+## Installing
+
+On a MacOS/linux system, installation is easy. Open a terminal, and go into 
+the directory with the flask app files. Run `python worldbank.py` in the terminal.
