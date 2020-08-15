@@ -4,6 +4,8 @@ import plotly.graph_objs as go
 import plotly.colors
 from collections import OrderedDict
 import requests
+from pynytimes import NYTAPI
+import datetime
 
 def return_figures():
   """ Creates four plotly visualizations using the New York Times Archive API
