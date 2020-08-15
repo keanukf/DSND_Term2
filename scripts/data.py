@@ -71,8 +71,8 @@ def return_figures():
 
   # filter and sort values for the visualization
   # filtering plots the articles in decreasing order by their values
-  labels = df_two.section_name.value_counts().index
-  values = df_two.section_name.value_counts().values
+  labels = df_two.news_desk.value_counts().index
+  values = df_two.news_desk.value_counts().values
 
   graph_two.append(
     go.Pie(
@@ -81,7 +81,7 @@ def return_figures():
     )
   )
 
-  layout_two = dict(title = 'Distribution of sections of this months New York Times articles')
+  layout_two = dict(title = 'Distribution of news desk of this months articles')
 
   # third chart plots section distribution
   # as a pie chart
@@ -90,8 +90,8 @@ def return_figures():
 
   # filter and sort values for the visualization
   # filtering plots the articles in decreasing order by their values
-  labels = df_three.section_name.value_counts().index
-  values = df_three.section_name.value_counts().values
+  labels = df_three.type_of_material.value_counts().index
+  values = df_three.type_of_material.value_counts().values
 
   graph_three.append(
     go.Pie(
@@ -100,7 +100,7 @@ def return_figures():
     )
   )
 
-  layout_three = dict(title = 'Distribution of sections of this months New York Times articles')
+  layout_three = dict(title = 'Distribution for type of material of this months articles')
 
   # fourth chart plots section distribution
   # as a pie chart
