@@ -13,6 +13,7 @@ jsonschema==2.6.0
 jupyter-core==4.4.0
 MarkupSafe==1.1.1
 nbformat==4.4.0
+nltk==3.5
 numpy==1.14.3
 pandas==0.22.0
 pipenv==11.10.4
@@ -20,6 +21,7 @@ plotly==4.9.0
 pynytimes==0.4.0
 python-dateutil==2.7.3
 pytz==2018.4
+re==3.8.5
 requests==2.18.4
 six==1.11.0
 traitlets==4.3.2

@@ -8,6 +8,17 @@ import requests
 from pynytimes import NYTAPI
 import datetime
 
+from collections import Counter
+import re
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+
+import nltk
+nltk.download('vader_lexicon')
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 
 def return_figures():
   """ Creates four plotly visualizations using the New York Times Archive API
@@ -136,21 +147,95 @@ def return_figures():
 
   layout_four = dict(title = 'Number of articles published by days')
 
-  # fourth chart plots section distribution
+    # fifth chart plots section distribution
+    # as a pie chart
+    graph_five = []
+
+    df_five = df.copy()
+
+    def tokenize(text):
+        """
+        Tokenizes and Lemmatizes a given text
+        Args:
+          text (str): Text to tokenize
+        Returns:
+          list: List of text tokens
+        """
+
+        # remove punctiation
+        text = re.sub(r'[^a-zA-Z0-9]', " ", text)
+
+        # tokenize given text
+        tokens = word_tokenize(text)
+
+        # remove stopwords
+        #tokens_without_sw = tokens
+        tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
+
+        # instantiate lemmatizer
+        lemmatizer = WordNetLemmatizer()
+
+        # lemmatize each token
+        clean_tokens = []
+        for tok in tokens_without_sw:
+            clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+            clean_tokens.append(clean_tok)
+
+        return clean_tokens
+
+    token_list = []
+
+    for title in df_five.headline:
+        title_tokens = tokenize(title)
+        for token in title_tokens:
+            token_list.append(token)
+
+    # filter and sort values for the visualization
+    # filtering plots the articles in decreasing order by their values
+    most_common_words = Counter(token_list).most_common(10)
+
+    graph_five.append(
+        go.Table(cells=dict(values=most_common_words)
+        )
+    )
+
+    layout_five = dict(title = 'Most frequently used words (excluding stopwords)')
+
+  # sixth chart plots section distribution
   # as a pie chart
-  graph_five = []
+  graph_six = []
+  df_six = df.copy()
 
-  # Calculate average number of words for this months articles
-  avg_word_count = round(df.word_count.mean(),0)
+  # filter and sort values for the visualization
+  # filtering plots the articles in decreasing order by their values
+  # Initialize the VADER sentiment analyzer
+  analyzer = SentimentIntensityAnalyzer()
 
-  graph_five.append(
-      go.Table(
-          header=dict(values=['Average Word Count']),
-          cells=dict(values=[avg_word_count])
+  # Initializing a dictionary to keep tally of results
+  result = {'pos': 0, 'neg': 0, 'neu': 0}
+  for text in df_six.abstract[df_six.news_desk == "Politics"]:
+      score = analyzer.polarity_scores(text)
+      if score['compound'] > 0.05:
+          result['pos'] += 1
+      elif score['compound'] < -0.05:
+          result['neg'] += 1
+      else:
+          result['neu'] += 1
+
+  df_result = pd.DataFrame.from_dict(result, orient='index', columns=["sentiment_score"])
+
+  labels = df_result.index
+  values = df_result.sentiment_score
+
+  graph_six.append(
+      go.Pie(
+          labels=labels,
+          values=values,
+          hole=.6
       )
   )
 
-  layout_five = dict(title = '')
+  layout_six = dict(title = 'Sentiment analysis of politics news desk abstracts')
 
   # append all charts
   figures = []
@@ -159,5 +244,6 @@ def return_figures():
   figures.append(dict(data=graph_three, layout=layout_three))
   figures.append(dict(data=graph_four, layout=layout_four))
   figures.append(dict(data=graph_five, layout=layout_five))
+  figures.append(dict(data=graph_six, layout=layout_six))
 
   return figures
