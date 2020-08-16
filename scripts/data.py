@@ -58,7 +58,8 @@ def return_figures():
   graph_one.append(
     go.Pie(
         labels=labels,
-        values=values
+        values=values,
+        hole=.6
     )
   )
 
@@ -77,7 +78,8 @@ def return_figures():
   graph_two.append(
     go.Pie(
         labels=labels,
-        values=values
+        values=values,
+        hole=.6
     )
   )
 
@@ -96,7 +98,8 @@ def return_figures():
   graph_three.append(
     go.Pie(
         labels=labels,
-        values=values
+        values=values,
+        hole=.6
     )
   )
 
