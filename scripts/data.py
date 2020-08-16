@@ -109,21 +109,27 @@ def return_figures():
   # fourth chart plots section distribution
   # as a pie chart
   graph_four = []
+
+  # Convert publishing date columns to datetime format
+  df["pub_date"] = pd.to_datetime(df["pub_date"]).dt.date
+
   df_four = df.copy()
+  df_four = df_four.pub_date.value_counts().to_frame().sort_index()
 
   # filter and sort values for the visualization
   # filtering plots the articles in decreasing order by their values
-  labels = df_four.section_name.value_counts().index
-  values = df_four.section_name.value_counts().values
+  x_val = df_four.index
+  y_val = df_four.values
 
   graph_four.append(
-    go.Pie(
-        labels=labels,
-        values=values
-    )
+        go.Scatter(
+            x=x_val,
+            y=y_val,
+            mode="lines"
+        )
   )
 
-  layout_four = dict(title = 'Distribution of sections of this months New York Times articles')
+  layout_four = dict(title = 'Number of articles published by days')
 
 
   # append all charts
