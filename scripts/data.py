@@ -55,16 +55,18 @@ def return_figures():
   labels = df_one.section_name.value_counts().index
   values = df_one.section_name.value_counts().values
 
-  graph_one.append(
-    go.Pie(
-        labels=labels,
-        values=values,
-        hole=.6
+graph_one.append(
+    px.pie(
+        df_one_data,
+        values='section_name',
+        names=df_one_data.index
     )
-  )
+)
 
-  layout_one = dict(title = 'Distribution of sections of this months New York Times articles',
-                    uniformtext_mode='hide')
+layout_one = dict(title = 'Distribution of sections of this months New York Times articles',
+                 textposition='inside',
+                 uniformtext_minsize=12,
+                 uniformtext_mode='hide')
 
   # second chart plots section distribution
   # as a pie chart
