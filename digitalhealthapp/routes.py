@@ -13,7 +13,6 @@ def index():
 	if (request.method == 'POST') and request.form:
 		figures = return_figures(request.form)
 
-
 	# GET request returns all countries for initial page load
 	else:
 		figures = return_figures()
