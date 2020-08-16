@@ -63,7 +63,8 @@ def return_figures():
     )
   )
 
-  layout_one = dict(title = 'Distribution of sections of this months New York Times articles')
+  layout_one = dict(title = 'Distribution of sections of this months New York Times articles',
+                    uniformtext_mode='hide')
 
   # second chart plots section distribution
   # as a pie chart
