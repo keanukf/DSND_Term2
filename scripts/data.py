@@ -8,6 +8,7 @@ import requests
 from pynytimes import NYTAPI
 import datetime
 
+
 def return_figures():
   """ Creates four plotly visualizations using the New York Times Archive API
 
@@ -135,6 +136,21 @@ def return_figures():
 
   layout_four = dict(title = 'Number of articles published by days')
 
+  # fourth chart plots section distribution
+  # as a pie chart
+  graph_five = []
+
+  # Calculate average number of words for this months articles
+  avg_word_count = round(df.word_count.mean(),0)
+
+  graph_five.append(
+      go.Table(
+          header=dict(values=['Average Word Count']),
+          cells=dict(values=[avg_word_count])
+      )
+  )
+
+  layout_five = dict(title = '')
 
   # append all charts
   figures = []
@@ -142,5 +158,6 @@ def return_figures():
   figures.append(dict(data=graph_two, layout=layout_two))
   figures.append(dict(data=graph_three, layout=layout_three))
   figures.append(dict(data=graph_four, layout=layout_four))
+  figures.append(dict(data=graph_five, layout=layout_five))
 
   return figures

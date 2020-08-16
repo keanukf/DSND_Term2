@@ -9,11 +9,11 @@ from scripts.data import return_figures
 @app.route('/index', methods=['POST', 'GET'])
 def index():
 
-	# Parse the POST request countries list
+	# Parse the POST request articles list
 	if (request.method == 'POST') and request.form:
 		figures = return_figures(request.form)
 
-	# GET request returns all countries for initial page load
+	# GET request returns all articles for initial page load
 	else:
 		figures = return_figures()
 
