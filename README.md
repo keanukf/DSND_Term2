@@ -1,14 +1,9 @@
 # Link to Webapp [https://udacity-venture-recommendation.herokuapp.com/](https://udacity-venture-recommendation.herokuapp.com/)
 
-# Digital Health Venture Dashboard
+# New York Times Dashboard
 
-This is a flask app that visualizes a set of data including digital health startups. Data is visualized using Plotly.
+This is a flask app that visualizes a set of data including all articles by New York Times published this month. Data is visualized using Plotly.
 This is a project in development for the Udacity Data Scientist Nanodegree.
-
-## Getting Started
-
-This flask app can be used as a template for visualizing your own data. Use
-the template to enhance your professional portfolio.
 
 ## Prerequisites
 
