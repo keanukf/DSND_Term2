@@ -60,7 +60,8 @@ def return_figures():
     go.Pie(
         labels=labels,
         values=values,
-        hole=.6
+        hole=.6,
+        textposition="inside"
     )
   )
 
@@ -80,7 +81,8 @@ def return_figures():
     go.Pie(
         labels=labels,
         values=values,
-        hole=.6
+        hole=.6,
+        textposition="inside"
     )
   )
 
@@ -100,7 +102,8 @@ def return_figures():
     go.Pie(
         labels=labels,
         values=values,
-        hole=.6
+        hole=.6,
+        textposition="inside"
     )
   )
 
