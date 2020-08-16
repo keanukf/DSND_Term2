@@ -126,9 +126,10 @@ def return_figures():
 
   graph_four.append(
         go.Scatter(
-            x=x_val,
-            y=y_val,
-            mode="lines"
+            x=df_four.index,
+            y=df_four["pub_date"],
+            mode="lines",
+            name="Articles"
         )
   )
 
