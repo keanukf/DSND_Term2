@@ -59,12 +59,12 @@ def return_figures():
       px.pie(
           df_one_data,
           values='section_name',
-          names=df_one_data.index
+          names=df_one_data.index,
+          uniformtext_mode='hide'
       )
   )
 
-  layout_one = dict(title = 'Distribution of sections of this months New York Times articles',
-                   uniformtext_mode='hide')
+  layout_one = dict(title = 'Distribution of sections of this months New York Times articles')
 
   # second chart plots section distribution
   # as a pie chart
@@ -80,7 +80,8 @@ def return_figures():
     go.Pie(
         labels=labels,
         values=values,
-        hole=.6
+        hole=.6,
+        uniformtext_mode='hide'
     )
   )
 
