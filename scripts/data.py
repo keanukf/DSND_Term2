@@ -53,15 +53,15 @@ def return_figures():
 
   # filter and sort values for the visualization
   # filtering plots the articles in decreasing order by their values
-  df_one_data = df_one.section_name.value_counts().to_frame()
+  labels = df_one.section_name.value_counts().index
+  values = df_one.section_name.value_counts().values
 
   graph_one.append(
-      px.pie(
-          df_one_data,
-          values='section_name',
-          names=df_one_data.index,
-          uniformtext_mode='hide'
-      )
+    go.Pie(
+        labels=labels,
+        values=values,
+        hole=.6
+    )
   )
 
   layout_one = dict(title = 'Distribution of sections of this months New York Times articles')
@@ -80,8 +80,7 @@ def return_figures():
     go.Pie(
         labels=labels,
         values=values,
-        hole=.6,
-        uniformtext_mode='hide'
+        hole=.6
     )
   )
 
