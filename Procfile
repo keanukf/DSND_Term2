@@ -1,1 +1,1 @@
-web gunicorn digitalhealth:app
+web gunicorn nytdashboard:app

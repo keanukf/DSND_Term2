@@ -1,4 +1,4 @@
-# Link to Webapp [https://udacity-venture-recommendation.herokuapp.com/](https://udacity-venture-recommendation.herokuapp.com/)
+# Link to Webapp [https://udacity-nyt-dashboard.herokuapp.com/](https://udacity-nyt-dashboard.herokuapp.com/)
 
 # New York Times Dashboard
 
