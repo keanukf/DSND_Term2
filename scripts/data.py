@@ -63,8 +63,6 @@ def return_figures():
   )
 
   layout_one = dict(title = 'Distribution of sections of this months New York Times articles',
-                   textposition='inside',
-                   uniformtext_minsize=12,
                    uniformtext_mode='hide')
 
   # second chart plots section distribution
