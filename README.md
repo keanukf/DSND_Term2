@@ -19,4 +19,4 @@ To install the flask app, you need:
 ## Installing
 
 On a MacOS/linux system, installation is easy. Open a terminal, and go into
-the directory with the flask app files. Run `python digitalhealth.py` in the terminal.
+the directory with the flask app files. Run `python nytdashboard.py` in the terminal.

@@ -1,4 +1,4 @@
-from digitalhealthapp import app
+from nytdashboardapp import app
 
 import json, plotly
 from flask import render_template, request, Response, jsonify
