@@ -1,1 +1,1 @@
-from digitalhealthapp import app
+from nytdashboardapp import app
