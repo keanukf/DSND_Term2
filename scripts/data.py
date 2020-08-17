@@ -146,59 +146,59 @@ def return_figures():
 
   layout_four = dict(title = 'Number of articles published by days')
 
-    # fifth chart plots section distribution
-    # as a pie chart
-    graph_five = []
+  # fifth chart plots section distribution
+  # as a pie chart
+  graph_five = []
 
-    df_five = df.copy()
+  df_five = df.copy()
 
-    def tokenize(text):
-        """
-        Tokenizes and Lemmatizes a given text
-        Args:
-          text (str): Text to tokenize
-        Returns:
-          list: List of text tokens
-        """
+  def tokenize(text):
+      """
+      Tokenizes and Lemmatizes a given text
+      Args:
+        text (str): Text to tokenize
+      Returns:
+        list: List of text tokens
+      """
 
-        # remove punctiation
-        text = regex.sub(r'[^a-zA-Z0-9]', " ", text)
+      # remove punctiation
+      text = regex.sub(r'[^a-zA-Z0-9]', " ", text)
 
-        # tokenize given text
-        tokens = word_tokenize(text)
+      # tokenize given text
+      tokens = word_tokenize(text)
 
-        # remove stopwords
-        #tokens_without_sw = tokens
-        tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
+      # remove stopwords
+      #tokens_without_sw = tokens
+      tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
 
-        # instantiate lemmatizer
-        lemmatizer = WordNetLemmatizer()
+      # instantiate lemmatizer
+      lemmatizer = WordNetLemmatizer()
 
-        # lemmatize each token
-        clean_tokens = []
-        for tok in tokens_without_sw:
-            clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-            clean_tokens.append(clean_tok)
+      # lemmatize each token
+      clean_tokens = []
+      for tok in tokens_without_sw:
+          clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+          clean_tokens.append(clean_tok)
 
-        return clean_tokens
+      return clean_tokens
 
-    token_list = []
+  token_list = []
 
-    for title in df_five.headline:
-        title_tokens = tokenize(title)
-        for token in title_tokens:
-            token_list.append(token)
+  for title in df_five.headline:
+      title_tokens = tokenize(title)
+      for token in title_tokens:
+          token_list.append(token)
 
-    # filter and sort values for the visualization
-    # filtering plots the articles in decreasing order by their values
-    most_common_words = Counter(token_list).most_common(10)
+  # filter and sort values for the visualization
+  # filtering plots the articles in decreasing order by their values
+  most_common_words = Counter(token_list).most_common(10)
 
-    graph_five.append(
-        go.Table(cells=dict(values=most_common_words)
-        )
-    )
+  graph_five.append(
+      go.Table(cells=dict(values=most_common_words)
+      )
+  )
 
-    layout_five = dict(title = 'Most frequently used words (excluding stopwords)')
+  layout_five = dict(title = 'Most frequently used words (excluding stopwords)')
 
   # sixth chart plots section distribution
   # as a pie chart
