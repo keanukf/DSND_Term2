@@ -9,7 +9,7 @@ from pynytimes import NYTAPI
 import datetime
 
 from collections import Counter
-import re
+import regex
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
@@ -162,7 +162,7 @@ def return_figures():
         """
 
         # remove punctiation
-        text = re.sub(r'[^a-zA-Z0-9]', " ", text)
+        text = regex.sub(r'[^a-zA-Z0-9]', " ", text)
 
         # tokenize given text
         tokens = word_tokenize(text)
