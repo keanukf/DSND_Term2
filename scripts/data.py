@@ -168,8 +168,8 @@ def return_figures():
       tokens = word_tokenize(text)
 
       # remove stopwords
-      #tokens_without_sw = tokens
-      tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
+      tokens_without_sw = tokens
+      #tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
 
       # instantiate lemmatizer
       lemmatizer = WordNetLemmatizer()
