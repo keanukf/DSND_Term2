@@ -2,7 +2,7 @@
 
 ## New York Times Dashboard
 
-This is a flask app that visualizes a set of data including all articles by New York Times published this month. Data is visualized using Plotly.
+This is a web app was built with python and flask and was deployed with [Heroku](https://dashboard.heroku.com/apps). It visualizes a set of data including all articles by New York Times (NYT) published this month. Data is visualized using Plotly.
 This is a project in development for the Udacity Data Scientist Nanodegree.
 
 ## Agenda
@@ -18,8 +18,33 @@ This is a project in development for the Udacity Data Scientist Nanodegree.
 
 # 1. The flood of information
 
-# 2. Development of a New York Times dashboard
+In today's world, access to information is increasingly easy. Whether on Facebook, LinkedIn and Instagram, all information is from official and private sources. In addition, many recommendation machine learning algorithms are now learning to interpret user behavior, making what is presented to us even more pre-selected.
 
+Therefore, it might be useful to have a tool for a general overview of the distributed contents of certain serious and reliable news institutions.
+
+In a first step, it would be useful to have a dashboard that could answer the following questions:
+- In which areas and topics are most articles published?
+- On which days of the month are the most and least articles published?
+- Is it possible to show a mood for the current articles?
+
+
+# 2. Perspectives on a solution
+
+To give a first solution to this problem, I created a dashboard for the (digital) articles of the New York Times of the current month, whose development I will explain in the following.
+
+I chose the [New York Times](https://www.nytimes.com/) because it has a high reputation, professionalism and a well documented [API](https://developer.nytimes.com/).
+
+
+# 3. Development of a New York Times dashboard
+The following will explain the approach I chose to develop the Dashboard and deploy it as a web app. For full code see GitHub repository. Also find a [Jupyter Notebook](https://github.com/keanukf/udacity_nyt_dashboard/blob/extended_version/scripts/data.ipynb) in the repository, where I double checked some of the code of the web app.
+
+## 3.1 Data extraction of the NYT API
+The data extraction and modeling of charts was fully done in the `scripts/data.py`file. I used the `pynytimes` package for easier connection. I extracted all the articles of July, which in the end included 6553 articles. Then I looked at the data and 
+
+## 3.2 Data modeling and analysis to answer  
+
+
+## 3.3
 
 
 ### Advantages of using VADER
@@ -29,9 +54,20 @@ This is a project in development for the Udacity Data Scientist Nanodegree.
 - It is fast enough to be used online with streaming data, and
 - It does not severely suffer from a speed-performance tradeoff.
 
-# 4.
 
-# 5. Limitations and possible improvements
+# 4. Limitations and possible improvements
+
+## Limitations
+
+## Possible improvements
+
+One possible and probably useful additional feature would be some filters, so users can actively choose what data of which time period is most relevant to them. This can easily be implement within the web part of the application, since the easy NYT API allows free choiche of dates - information about filtering just need to be put at the query part of the API connection.
+Another interesting filter might be filtering out specific topics and news types for the sentiment analysis, so they can get a quick overview of overall sentiment tendencies of the topic of their interest.
+
+Finally it might be a relevant extension to also implement other newspaper APIs and give the user a chance to select between different newspapers for analysis.
+
+
+# 5. How to install it yourself
 
 ## Prerequisites
 
@@ -45,6 +81,8 @@ To install the flask app, you need:
 ```
 
 ## Installing
+
+Add `app.run(host='0.0.0.0', port=3001, debug=True)` as a new line to the `nytdashboard.py`file.
 
 On a MacOS/linux system, installation is easy. Open a terminal, and go into
 the directory with the flask app files. Run `python nytdashboard.py` in the terminal.
