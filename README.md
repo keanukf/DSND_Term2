@@ -39,30 +39,42 @@ I chose the [New York Times](https://www.nytimes.com/) because it has a high rep
 The following will explain the approach I chose to develop the Dashboard and deploy it as a web app. For full code see GitHub repository. Also find a [Jupyter Notebook](https://github.com/keanukf/udacity_nyt_dashboard/blob/extended_version/scripts/data.ipynb) in the repository, where I double checked some of the code of the web app.
 
 ## 3.1 Data extraction of the NYT API
-The data extraction and modeling of charts was fully done in the `scripts/data.py`file. I used the `pynytimes` package for easier connection. I extracted all the articles of July, which in the end included 6553 articles. Then I looked at the data and 
+The data extraction and modeling of charts was fully done in the `scripts/data.py`file. I used the `pynytimes` package for easier connection. I extracted all the articles of July, which in the end included 6553 articles. After inspecting the dataset and extracting the relevant columns, no data was missing, so no further data cleaning was necessary.
 
 ## 3.2 Data modeling and analysis to answer  
 
+Then the first three charts were developed with `plotly` and its `go` functions, in order to answer the first question (see Figure 1). There the distribution of 1) sections, 2) news desks and 3) type of material is shown. Here we can easily see that in July the most articles were published within the U.S. section (20.6%), on the Business news desk (8.53%) and by far the most published articles were news (72.6%). That's already a good overview of the distributions of topics and types of articles. Here as well the data was already clean and had no double values oder missing values.
 
-## 3.3
+To answer the second question, again a `plotly` chart was created by aggregating the publishing dates and counting the number of articles published per day. On this chart (see Figure 1) we can see that there's a wide range of number of published articles (range between 57 and 382). That there are frequent lows, occuring at the Saturday 4th, Sunday 12th, Saturday 18th and Sunday 26th, which might be an indicator that the New York Times might has several low production days during the weekend.
 
+### Figure 1
+![Project Preview](/images/preview.png)
+
+Regarding the last question, a Natural Language Processing (NLP) sentiment analysis approach was chosen. Specifically the pretrained Vader text corpus and the `SentimentIntensityAnalyzer()` sentiment analysis function was used. It can easily be used on new english language data to score positive, neutral and negative words.
 
 ### Advantages of using VADER
-- VADER has a lot of advantages over traditional methods of Sentiment Analysis, including:
+"VADER has a lot of advantages over traditional methods of Sentiment Analysis, including:
 - It works exceedingly well on social media type text, yet readily generalizes to multiple domains
 - It doesn’t require any training data but is constructed from a generalizable, valence-based, human-curated gold standard sentiment lexicon
 - It is fast enough to be used online with streaming data, and
-- It does not severely suffer from a speed-performance tradeoff.
+- It does not severely suffer from a speed-performance tradeoff."
 
+Within the first implementation of the Vader sentiment analysis the dataset was too large to analyze, causing an error at the heroku deployment. That's why I decided to only filter for one section, the `politics` section in this case. The resulting chart (see Figure 2) shows us, that Julies politics articles were mostly positive (45.8%) and only a third (34.6%) of the words used were negative, with the rest being neutral. This gives any user a quick overview about the overall sentiment of a specific section.
+
+### Figure 2
+![Sentiment Analysis](/images/sentiment.png)
 
 # 4. Limitations and possible improvements
-
 ## Limitations
+
+The performance of the NLP implementation is limited, so it was only possible to give an overview over one section. Also the user is not able to manipulate and interact with the data.
 
 ## Possible improvements
 
-One possible and probably useful additional feature would be some filters, so users can actively choose what data of which time period is most relevant to them. This can easily be implement within the web part of the application, since the easy NYT API allows free choiche of dates - information about filtering just need to be put at the query part of the API connection.
+One possible and probably useful additional feature would be some filters, so users can actively choose what data of which time period is most relevant to them. This can easily be implement within the web part of the application, since the easy NYT API allows free choice of dates - information about filtering just need to be put at the query part of the API connection.
 Another interesting filter might be filtering out specific topics and news types for the sentiment analysis, so they can get a quick overview of overall sentiment tendencies of the topic of their interest.
+
+Also further NLP algorithms can be implemented and already existing ones can be fined tuned and improved.
 
 Finally it might be a relevant extension to also implement other newspaper APIs and give the user a chance to select between different newspapers for analysis.
 
