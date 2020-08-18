@@ -1,15 +1,26 @@
-# Link to Webapp [https://udacity-nyt-dashboard.herokuapp.com/](https://udacity-nyt-dashboard.herokuapp.com/)
+### Link to the [New York Times Dashboard](https://udacity-nyt-dashboard.herokuapp.com/)
+
+## New York Times Dashboard
+
+This is a flask app that visualizes a set of data including all articles by New York Times published this month. Data is visualized using Plotly.
+This is a project in development for the Udacity Data Scientist Nanodegree.
 
 ## Agenda
 
 1. The flood of information
-2. Development of a support tool
-3. 
-4. How to install it yourself
+2. Perspectives on a solution
+3. Development of a New York Times dashboard
+4. Limitations and possible improvements
+5. How to install it yourself
 
+### Preview of the developed Dashboard
 ![Project Preview](/images/preview.png)
 
-# 2. Development of a support tool
+# 1. The flood of information
+
+# 2. Development of a New York Times dashboard
+
+
 
 ### Advantages of using VADER
 - VADER has a lot of advantages over traditional methods of Sentiment Analysis, including:
@@ -18,12 +29,9 @@
 - It is fast enough to be used online with streaming data, and
 - It does not severely suffer from a speed-performance tradeoff.
 
+# 4.
 
-# 4. How to install it yourself
-## New York Times Dashboard
-
-This is a flask app that visualizes a set of data including all articles by New York Times published this month. Data is visualized using Plotly.
-This is a project in development for the Udacity Data Scientist Nanodegree.
+# 5. Limitations and possible improvements
 
 ## Prerequisites
 
