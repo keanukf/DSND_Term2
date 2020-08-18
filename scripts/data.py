@@ -146,6 +146,7 @@ def return_figures():
 
   layout_four = dict(title = 'Number of articles published by days')
 
+
   # fifth chart plots section distribution
   # as a pie chart
   graph_five = []
@@ -168,17 +169,19 @@ def return_figures():
       tokens = word_tokenize(text)
 
       # remove stopwords
-      tokens_without_sw = tokens
-      #tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
+      #tokens_without_sw = tokens
+      tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
 
       # instantiate lemmatizer
-      lemmatizer = WordNetLemmatizer()
+      #lemmatizer = WordNetLemmatizer()
 
       # lemmatize each token
-      clean_tokens = []
-      for tok in tokens_without_sw:
-          clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-          clean_tokens.append(clean_tok)
+      #clean_tokens = []
+      #for tok in tokens_without_sw:
+      #  clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+      #  clean_tokens.append(clean_tok)
+
+      clean_tokens = tokens_without_sw
 
       return clean_tokens
 
@@ -186,8 +189,7 @@ def return_figures():
 
   for title in df_five.headline:
       title_tokens = tokenize(title)
-      for token in title_tokens:
-          token_list.append(token)
+      token_list.extend(title_tokens)
 
   # filter and sort values for the visualization
   # filtering plots the articles in decreasing order by their values
