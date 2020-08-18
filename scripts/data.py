@@ -147,60 +147,6 @@ def return_figures():
   layout_four = dict(title = 'Number of articles published by days')
 
 
-  # fifth chart plots section distribution
-  # as a pie chart
-  graph_five = []
-
-  df_five = df.copy()
-
-  def tokenize(text):
-      """
-      Tokenizes and Lemmatizes a given text
-      Args:
-        text (str): Text to tokenize
-      Returns:
-        list: List of text tokens
-      """
-
-      # remove punctiation
-      text = regex.sub(r'[^a-zA-Z0-9]', " ", text)
-
-      # tokenize given text
-      tokens = word_tokenize(text)
-
-      # remove stopwords
-      #tokens_without_sw = tokens
-      tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
-
-      # instantiate lemmatizer
-      #lemmatizer = WordNetLemmatizer()
-
-      # lemmatize each token
-      #clean_tokens = []
-      #for tok in tokens_without_sw:
-      #  clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-      #  clean_tokens.append(clean_tok)
-
-      clean_tokens = tokens_without_sw
-
-      return clean_tokens
-
-  token_list = []
-
-  for title in df_five.headline[:200]:
-      title_tokens = tokenize(title)
-      token_list.extend(title_tokens)
-
-  # filter and sort values for the visualization
-  # filtering plots the articles in decreasing order by their values
-  most_common_words = Counter(token_list).most_common(10)
-
-  graph_five.append(
-      go.Table(cells=dict(values=most_common_words)
-      )
-  )
-
-  layout_five = dict(title = 'Most frequently used words (excluding stopwords)')
 
   # sixth chart plots section distribution
   # as a pie chart
@@ -244,7 +190,7 @@ def return_figures():
   figures.append(dict(data=graph_two, layout=layout_two))
   figures.append(dict(data=graph_three, layout=layout_three))
   figures.append(dict(data=graph_four, layout=layout_four))
-  figures.append(dict(data=graph_five, layout=layout_five))
+  #figures.append(dict(data=graph_five, layout=layout_five))
   figures.append(dict(data=graph_six, layout=layout_six))
 
   return figures
