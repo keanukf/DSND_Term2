@@ -187,7 +187,7 @@ def return_figures():
 
   token_list = []
 
-  for title in df_five.headline:
+  for title in df_five.headline[:200]:
       title_tokens = tokenize(title)
       token_list.extend(title_tokens)
 
