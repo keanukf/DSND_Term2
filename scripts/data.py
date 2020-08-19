@@ -186,56 +186,56 @@ def return_figures():
 
   # fifth chart plots section distribution
   # as a table chart
-  graph_six = []
+#  graph_six = []
 
-  df_six = df.copy()
+#  df_six = df.copy()
 
-  def tokenize(text):
-      """
-      Tokenizes and Lemmatizes a given text
-      Args:
-        text (str): Text to tokenize
-      Returns:
-        list: List of text tokens
-      """
+#  def tokenize(text):
+#      """
+#      Tokenizes and Lemmatizes a given text
+#      Args:
+#        text (str): Text to tokenize
+#      Returns:
+#        list: List of text tokens
+#      """
 
       # remove punctiation
-      text = regex.sub(r'[^a-zA-Z0-9]', " ", text)
+#      text = regex.sub(r'[^a-zA-Z0-9]', " ", text)
 
       # tokenize given text
-      tokens = word_tokenize(text)
+#      tokens = word_tokenize(text)
 
       # remove stopwords
-      tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
+#      tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
 
       # instantiate lemmatizer
-      lemmatizer = WordNetLemmatizer()
+#      lemmatizer = WordNetLemmatizer()
 
-      # lemmatize each token
-      clean_tokens = []
-      for tok in tokens_without_sw:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
+#      # lemmatize each token
+#      clean_tokens = []
+#      for tok in tokens_without_sw:
+#        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+#        clean_tokens.append(clean_tok)
 
-      return clean_tokens
+#      return clean_tokens
 
-  token_list = []
+#  token_list = []
 
-  for title in df_six.headline[df_six["news_desk"] == "Politics"]:
-      title_tokens = tokenize(title)
-      token_list.extend(title_tokens)
+#  for title in df_six.headline[df_six["news_desk"] == "Politics"]:
+#      title_tokens = tokenize(title)
+#      token_list.extend(title_tokens)
 
 
   # filter and sort values for the visualization
   # filtering plots the articles in decreasing order by their values
-  most_common_words = Counter(token_list).most_common(10)
+#  most_common_words = Counter(token_list).most_common(10)
 
-  graph_six.append(
-      go.Table(cells=dict(values=most_common_words)
-      )
-  )
+#  graph_six.append(
+#      go.Table(cells=dict(values=most_common_words)
+#      )
+#  )
 
-  layout_six = dict(title = 'Most frequently used words in politics news desk (excluding stopwords)')
+#  layout_six = dict(title = 'Most frequently used words in politics news desk (excluding stopwords)')
 
   # append all charts
   figures = []
@@ -244,6 +244,6 @@ def return_figures():
   figures.append(dict(data=graph_three, layout=layout_three))
   figures.append(dict(data=graph_four, layout=layout_four))
   figures.append(dict(data=graph_five, layout=layout_five))
-  figures.append(dict(data=graph_six, layout=layout_six))
+  #figures.append(dict(data=graph_six, layout=layout_six))
 
   return figures
