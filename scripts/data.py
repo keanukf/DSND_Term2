@@ -8,16 +8,13 @@ import requests
 from pynytimes import NYTAPI
 import datetime
 
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 from collections import Counter
 import regex
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
-#nltk.download('stopwords')
-
-#nltk.download('vader_lexicon')
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-
 
 def return_figures():
   """ Creates four plotly visualizations using the New York Times Archive API
@@ -78,6 +75,7 @@ def return_figures():
 
   layout_one = dict(title = 'Distribution of sections of this months New York Times articles')
 
+
   # second chart plots section distribution
   # as a pie chart
   graph_two = []
@@ -98,6 +96,7 @@ def return_figures():
   )
 
   layout_two = dict(title = 'Distribution of news desk of this months articles')
+
 
   # third chart plots section distribution
   # as a pie chart
@@ -120,8 +119,9 @@ def return_figures():
 
   layout_three = dict(title = 'Distribution for type of material of this months articles')
 
+
   # fourth chart plots section distribution
-  # as a pie chart
+  # as a line chart
   graph_four = []
 
   # Convert publishing date columns to datetime format
@@ -147,11 +147,10 @@ def return_figures():
   layout_four = dict(title = 'Number of articles published by days')
 
 
-
   # sixth chart plots section distribution
   # as a pie chart
-  graph_six = []
-  df_six = df.copy()
+  graph_five = []
+  df_five = df.copy()
 
   # filter and sort values for the visualization
   # filtering plots the articles in decreasing order by their values
@@ -160,7 +159,7 @@ def return_figures():
 
   # Initializing a dictionary to keep tally of results
   result = {'pos': 0, 'neg': 0, 'neu': 0}
-  for text in df_six.abstract[df_six.news_desk == "Politics"]:
+  for text in df_five.abstract[df_five.news_desk == "Politics"]:
       score = analyzer.polarity_scores(text)
       if score['compound'] > 0.05:
           result['pos'] += 1
@@ -174,7 +173,7 @@ def return_figures():
   labels = df_result.index
   values = df_result.sentiment_score
 
-  graph_six.append(
+  graph_five.append(
       go.Pie(
           labels=labels,
           values=values,
@@ -182,7 +181,61 @@ def return_figures():
       )
   )
 
-  layout_six = dict(title = 'Sentiment analysis of politics news desk abstracts')
+  layout_five = dict(title = 'Sentiment analysis of politics news desk abstracts')
+
+
+  # fifth chart plots section distribution
+  # as a table chart
+  graph_six = []
+
+  df_six = df.copy()
+
+  def tokenize(text):
+      """
+      Tokenizes and Lemmatizes a given text
+      Args:
+        text (str): Text to tokenize
+      Returns:
+        list: List of text tokens
+      """
+
+      # remove punctiation
+      text = regex.sub(r'[^a-zA-Z0-9]', " ", text)
+
+      # tokenize given text
+      tokens = word_tokenize(text)
+
+      # remove stopwords
+      tokens_without_sw = [word for word in tokens if not word in stopwords.words()]
+
+      # instantiate lemmatizer
+      lemmatizer = WordNetLemmatizer()
+
+      # lemmatize each token
+      clean_tokens = []
+      for tok in tokens_without_sw:
+        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+        clean_tokens.append(clean_tok)
+
+      return clean_tokens
+
+  token_list = []
+
+  for title in df_six.headline[df_six["news_desk"] == "Politics"]:
+      title_tokens = tokenize(title)
+      token_list.extend(title_tokens)
+
+
+  # filter and sort values for the visualization
+  # filtering plots the articles in decreasing order by their values
+  most_common_words = Counter(token_list).most_common(10)
+
+  graph_six.append(
+      go.Table(cells=dict(values=most_common_words)
+      )
+  )
+
+  layout_six = dict(title = 'Most frequently used words in politics news desk (excluding stopwords)')
 
   # append all charts
   figures = []
@@ -190,7 +243,7 @@ def return_figures():
   figures.append(dict(data=graph_two, layout=layout_two))
   figures.append(dict(data=graph_three, layout=layout_three))
   figures.append(dict(data=graph_four, layout=layout_four))
-  #figures.append(dict(data=graph_five, layout=layout_five))
+  figures.append(dict(data=graph_five, layout=layout_five))
   figures.append(dict(data=graph_six, layout=layout_six))
 
   return figures

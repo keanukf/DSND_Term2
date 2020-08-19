@@ -13,8 +13,26 @@ This is a project in development for the Udacity Data Scientist Nanodegree.
 4. Limitations and possible improvements
 5. How to install it yourself
 
+
 ### Preview of the developed Dashboard
 ![Project Preview](/images/preview.png)
+
+## Repository structure
+* "nytdashboardapp" - Folder containing web app files
+  * "static" - HTML web pages
+    * "img" - Folder containing images for the web app
+  * "templates" - HTML web pages
+    * "index.html" - Page that shows NYT Dashboard
+  * "routes.py" - File that defines web app page connections
+* "scripts" - Folder containing data sources and processing script
+  * "data.py" - Datasource including New York Times data and chart creation
+  * "data.ipynb" - Jupyter Notebook used for data modeling testing purposes
+* "Images" - Folder containing images used for README.md
+* "nltk.txt" - Text file with nltk corporas for Heroku
+* "nytdashboard.py" - Script that starts the web app (Heroku and locally)
+* "Procfile" - File specifying web app type for Heroku
+* "requirements.txt" - File specifying imported python packages for Heroku
+
 
 # 1. The flood of information
 
@@ -65,7 +83,7 @@ Within the first implementation of the Vader sentiment analysis the dataset was 
 ![Sentiment Analysis](/images/sentiment.png)
 
 ## 3.3 Deployment of the web app
-For the deployment of the web app I chose Heroku and took a template of Udacity, for a basic web application. A lot of problems and debugging was caused by the implementation of NLP algorithms and packages, e.g. the `nltk` package, because therefore some extra files like the `nltk.txt` including nltk corpora downnload specifications, was necessary. Afterall the web app was finally deployed on heroku with the user of python and flask. 
+For the deployment of the web app I chose Heroku and took a template of Udacity, for a basic web application. A lot of problems and debugging was caused by the implementation of NLP algorithms and packages, e.g. the `nltk` package, because therefore some extra files like the `nltk.txt` including nltk corpora downnload specifications, was necessary. Afterall the web app was finally deployed on heroku with the user of python and flask.
 
 
 # 4. Limitations and possible improvements
@@ -78,7 +96,7 @@ The performance of the NLP implementation is limited, so it was only possible to
 One possible and probably useful additional feature would be some filters, so users can actively choose what data of which time period is most relevant to them. This can easily be implement within the web part of the application, since the easy NYT API allows free choice of dates - information about filtering just need to be put at the query part of the API connection.
 Another interesting filter might be filtering out specific topics and news types for the sentiment analysis, so they can get a quick overview of overall sentiment tendencies of the topic of their interest.
 
-Also further NLP algorithms can be implemented and already existing ones can be fined tuned and improved.
+Also further NLP algorithms can be implemented (like the one that I didn't manage to implement to the web app) and already existing ones can be fined tuned and improved.
 
 Finally it might be a relevant extension to also implement other newspaper APIs and give the user a chance to select between different newspapers for analysis.
 
