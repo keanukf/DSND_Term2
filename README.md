@@ -82,6 +82,14 @@ Within the first implementation of the Vader sentiment analysis the dataset was 
 ### Figure 2
 ![Sentiment Analysis](/images/sentiment.png)
 
+As a another indicator of sentiment analysis I tried to implement a tokenization and word count NLP algorithm to get the top 10 most used words, so the user can get a better overview of frequently used words. I started removing all the punctuation with regular expression functions `regex.sub(r'[^a-zA-Z0-9]', " ", text)`. Then I removed stopwords with the `stopwords` corpora from nltk. Then I lemmatized, lowered and stripped every token (`clean_tok = lemmatizer.lemmatize(tok).lower().strip()`) to get clean comparable tokens. Finally I displayed everything within a `plotly` chart as seen in figure 3. We can see that politics in July was driven by words like "trump, biden, election, senate and 2020". So obviously upcoming elections for US president is having a huge impact on New York Times News. 
+
+The only problem is, that this chart was not working on Heroku and was causing internal server errors, eventhough it is working in the Jupyter Notebook. So I had to exclude it from the web app.
+
+### Figure 3
+![Common Words](/images/common_words.png)
+
+
 ## 3.3 Deployment of the web app
 For the deployment of the web app I chose Heroku and took a template of Udacity, for a basic web application. A lot of problems and debugging was caused by the implementation of NLP algorithms and packages, e.g. the `nltk` package, because therefore some extra files like the `nltk.txt` including nltk corpora download specifications, was necessary. Afterall the web app was finally deployed on Heroku with the user of python and flask.
 
