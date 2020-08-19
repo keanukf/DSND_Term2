@@ -83,7 +83,7 @@ Within the first implementation of the Vader sentiment analysis the dataset was 
 ![Sentiment Analysis](/images/sentiment.png)
 
 ## 3.3 Deployment of the web app
-For the deployment of the web app I chose Heroku and took a template of Udacity, for a basic web application. A lot of problems and debugging was caused by the implementation of NLP algorithms and packages, e.g. the `nltk` package, because therefore some extra files like the `nltk.txt` including nltk corpora downnload specifications, was necessary. Afterall the web app was finally deployed on heroku with the user of python and flask.
+For the deployment of the web app I chose Heroku and took a template of Udacity, for a basic web application. A lot of problems and debugging was caused by the implementation of NLP algorithms and packages, e.g. the `nltk` package, because therefore some extra files like the `nltk.txt` including nltk corpora download specifications, was necessary. Afterall the web app was finally deployed on Heroku with the user of python and flask.
 
 
 # 4. Limitations and possible improvements
